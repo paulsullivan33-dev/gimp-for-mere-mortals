@@ -1,0 +1,5 @@
+$ python3 scripts/make_sample.py
+sample image: 640x480
+hillside.png: 5021 bytes
+hillside.ppm: 921615 bytes
+mean brightness (0-255): 100.8

@@ -1,0 +1,29 @@
+site_name: GIMP for Mere Mortals
+site_description: A free image editor for fixing photographs and making simple designs. Layers, selections and masks explained in plain language, a photograph repaired step by step, pictures resized and exported for the web, and the limits stated honestly.
+site_url: https://paulsullivan33-dev.github.io/gimp-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What GIMP Is: what-gimp-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing GIMP: installing-gimp.md
+  - Your First Edit: your-first-edit.md
+  - Layers, Properly: layers.md
+  - Selections and Masks: selections-and-masks.md
+  - Fixing a Photograph: fixing-a-photograph.md
+  - Resizing and Exporting for the Web: resizing-and-exporting.md
+  - Text and Simple Designs: text-and-simple-designs.md
+  - Batch Work with Script-Fu: batch-work-with-script-fu.md
+  - Colour Management in Plain Language: colour-management.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

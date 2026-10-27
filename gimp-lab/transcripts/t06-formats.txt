@@ -1,0 +1,8 @@
+script-fu-Warning: sample exported as PNG and as JPEG
+
+batch command executed successfully
+--- file sizes, same picture, three encodings ---
+hillside.png: 5021 bytes
+hillside-gimp.png: 8195 bytes
+hillside-gimp.jpg: 20828 bytes
+hillside.ppm: 921615 bytes

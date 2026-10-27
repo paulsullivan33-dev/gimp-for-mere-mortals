@@ -1,0 +1,17 @@
+script-fu-Warning: thumbnailed hillside.png
+
+script-fu-Warning: thumbnailed hillside-small.png
+
+script-fu-Warning: thumbnailed hillside-band.png
+
+script-fu-Warning: thumbnailed hillside-gimp.png
+
+script-fu-Warning: thumbnailed hillside-text.png
+
+batch command executed successfully
+--- thumbnails written ---
+thumb-hillside-band.png: 160x120, 7021 bytes
+thumb-hillside-gimp.png: 160x120, 7015 bytes
+thumb-hillside-small.png: 160x120, 7380 bytes
+thumb-hillside-text.png: 160x120, 8424 bytes
+thumb-hillside.png: 160x120, 6785 bytes

@@ -1,0 +1,7 @@
+using gegl copy
+script-fu-Warning: layer added, band filled, flattened, exported
+
+batch command executed successfully
+--- pixel read-back ---
+band centre (320,440): (255, 90, 40) (expect the fill colour 255, 90, 40)
+sky (320,100): original (113, 120, 129) -> banded (113, 120, 129) (expect identical)

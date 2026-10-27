@@ -1,0 +1,9 @@
+script-fu-Warning: loaded width=640 height=480
+
+script-fu-Warning: scaled, exported PNG, saved XCF
+
+batch command executed successfully
+--- reload the saved XCF and read it back ---
+script-fu-Warning: xcf width=320 height=240 layers=1
+
+batch command executed successfully

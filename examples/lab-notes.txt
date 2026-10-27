@@ -1,0 +1,115 @@
+The lab — one real install, one machine, no photographs at all
+====================================================================
+
+The lab is GIMP as Ubuntu ships it,
+installed with apt on the build machine
+(an Ubuntu 24.04 sandbox):
+
+  * GIMP 2.10.36, installed with
+    `sudo apt install gimp` (chapter 3's
+    commands, run verbatim).
+  * Every operation was driven headless
+    through batch mode, `gimp -i -b`,
+    because the build machine has no
+    display. Scripts are in
+    gimp-lab/scripts/, their output in
+    gimp-lab/transcripts/, and every
+    claim in the guide that says "the
+    lab" points at one of those files.
+  * The sample picture (gimp-lab/images/
+    hillside.png, 640x480) is drawn by a
+    Python script (PIL) kept beside it:
+    a dull invented landscape -- sky
+    gradient, pale sun, two hills, a
+    stone barn, and one scratch drawn
+    down it to stand in for scan damage.
+    No photograph, real or anyone's,
+    appears anywhere in this guide.
+
+What the lab ran, in
+gimp-lab/transcripts/:
+
+  * t00 `gimp --version`: 2.10.36.
+  * t01 the sample generated: 640x480,
+    PNG 5,021 bytes, PPM 921,615 bytes,
+    mean brightness 100.8 of 255 (dull
+    on purpose).
+  * t02 scale 640x480 -> 320x240 in
+    batch mode; PNG exported (8,941
+    bytes); XCF saved (15,899 bytes)
+    and reopened: reads back 320x240,
+    1 layer. The round trip is closed.
+  * t03 levels (black 40, white 210,
+    gamma 1.2) on a fresh copy: mean
+    brightness 100.8 -> 105.9; spread
+    (standard deviation) 30.4 -> 46.1.
+    Chapter 7's repair, measured.
+  * t04 a new transparent layer added;
+    a rectangle selected and filled
+    (255, 90, 40) in it; flattened and
+    exported. Read-back: the filled
+    pixel is exactly the fill colour;
+    a sky pixel is byte-identical to
+    the original.
+  * t05 text rendered onto the picture
+    (see the discovery below): 2,881
+    pixels changed in the text's strip.
+  * t06 the same picture exported by
+    GIMP as PNG (8,195 bytes) and as
+    JPEG (20,828 bytes) at default
+    settings -- PNG wins because the
+    sample is flat-shaded artwork, its
+    home ground; chapter 8 says so.
+  * t07 file-glob + for-each over all
+    five lab PNGs: thumbnails written
+    at 160x120 and read back at that
+    size, one by one.
+
+The build's small print, discovered by
+running into it (all chapter 15
+material):
+
+  * `gimp-text-layer-new` rejects its
+    documented arguments in this build
+    ("invalid type for argument 2",
+    and a five-argument limit where the
+    manual shows more). The bundled
+    script font-map.scm showed the
+    working call: `gimp-text-fontname`,
+    which t05 uses.
+  * The named exporters
+    (`file-jpeg-export`, `file-png-export`)
+    and the PDB query procedures are
+    not bound in this build's batch
+    Script-Fu at all. `gimp-file-save`
+    dispatches by extension and carried
+    every export in the lab.
+  * `file-glob` returns its matches as
+    a plain list in this build; the
+    classic documentation describes a
+    vector. t07's first run converted
+    for a vector and failed honestly;
+    the fix is in the script, commented.
+  * An apostrophe inside a comment in
+    the Scheme program ended the
+    shell's single-quoted string early.
+    That run printed "batch command
+    executed successfully", produced
+    nothing, and is the reason this
+    guide verifies outputs instead of
+    believing exit messages.
+
+Documented only (the lab has no
+display): every interactive procedure
+-- the window's layout and dialogs,
+the clicking form of the edits in
+chapters 4 to 9, the Procedure
+Browser, and colour management in
+chapter 11. The operations underneath
+the central chapters (opening,
+levels, layers, selections by
+rectangle, filling, text, scaling,
+exporting, saving XCF) are the ones
+verified headless above; the text of
+each chapter says which side of that
+line it stands on.

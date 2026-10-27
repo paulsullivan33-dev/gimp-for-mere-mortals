@@ -1,0 +1,6 @@
+script-fu-Warning: text rendered, flattened, exported
+
+batch command executed successfully
+--- pixel read-back over the text strip ---
+pixels changed in the text strip: 2881
+(a few thousand = the letters are really there)

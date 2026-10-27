@@ -1,0 +1,95 @@
+GIMP — the distilled commands
+====================================================================
+Placeholders: <photo> is one of your
+own picture files; paths in the batch
+examples are the lab's (gimp-lab/).
+
+INSTALL AND FIRST LOOK (chapter 3)
+--------------------------------------------------------------------
+  sudo apt update
+  sudo apt install gimp            # the lab got GIMP 2.10.36
+  gimp --version
+  # inside the program: Windows menu ->
+  # Single-Window Mode, unless it starts
+  # that way already (GIMP 3.0 does)
+
+THE ROUND TRIP (chapter 4)
+--------------------------------------------------------------------
+  # in the file manager first: copy the
+  # photo, rename the copy *-working
+  # in GIMP:
+  #   File -> Open            the copy
+  #   Colors -> Brightness-Contrast
+  #                           a little, not a lot
+  #   Crop tool               drag, Enter
+  #   File -> Save As         name.xcf (the negative)
+  #   File -> Export As       name-fixed.jpg, quality 90
+
+LAYERS (chapter 5)
+--------------------------------------------------------------------
+  # right-click a layer -> Duplicate Layer
+  #   (before any strong edit)
+  # eye icon                  show / hide, to compare
+  # Opacity slider            a fix that is too strong,
+  #                           turned down instead of undone
+  # Image -> Flatten Image    export-time only, and the
+  #                           exporter does it for you
+
+SELECTIONS AND MASKS (chapter 6)
+--------------------------------------------------------------------
+  # Shift-click               add to a selection
+  # Ctrl-click                subtract
+  # Select -> Invert          fence the background, get
+  #                           the subject
+  # Select -> Feather         soften the edge (a few px)
+  # Select -> None            dismiss the fence; the
+  #                           "dead brush" is usually this
+  # right-click layer -> Add Layer Mask
+  #                           black hides, white reveals
+
+FIXING (chapter 7)
+--------------------------------------------------------------------
+  # Colors -> Levels          black/white triangles to
+  #                           the histogram's feet, gamma
+  #                           to taste
+  # Colors -> Curves          the gentle S
+  # Heal tool                 Ctrl-click a clean source,
+  #                           paint the damage in strokes
+  # Filters -> Enhance -> Sharpen (Unsharp Mask)
+  #                           last, and lightly
+
+BATCH MODE (chapter 10)
+--------------------------------------------------------------------
+  gimp -i -b '( ...scheme... )' -b '(gimp-quit 0)'
+                                   # -i: no window; the quit
+                                   # is not optional in spirit
+
+  # scale one picture and export it (from t02):
+  gimp -i -b '
+    (let* ((image (car (gimp-file-load
+              RUN-NONINTERACTIVE "in.png" "in")))
+           (drawable (car (gimp-image-get-active-layer
+              image))))
+      (gimp-image-scale image 320 240)
+      (gimp-file-save RUN-NONINTERACTIVE image drawable
+                      "out.png" "out")
+      (gimp-image-delete image))' \
+    -b '(gimp-quit 0)'
+
+  # levels, exactly the same every time (t03):
+  #   (gimp-levels drawable HISTOGRAM-VALUE 40 210 1.2 0 255)
+
+  # a folder at once: file-glob + for-each (t07);
+  # in this build file-glob hands back a LIST of names
+  # as its second value, not the classic vector:
+  #   (cadr (file-glob "images/*.png" 0))
+
+HOUSEKEEPING
+--------------------------------------------------------------------
+  # no apostrophes inside the single-quoted scheme,
+  # comments included -- one ends the quote early and
+  # the run reports success while doing nothing (t07's
+  # first attempt; chapter 15)
+  # named exporters (file-jpeg-export and friends) are
+  # not callable in every build's Script-Fu; gimp-file-save
+  # dispatches by extension and works (t06)

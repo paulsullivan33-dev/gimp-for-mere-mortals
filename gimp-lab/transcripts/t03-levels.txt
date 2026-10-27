@@ -1,0 +1,7 @@
+using gegl copy
+script-fu-Warning: levels applied: black 40, white 210, gamma 1.2
+
+batch command executed successfully
+--- measured brightness and spread, original vs levels ---
+hillside.ppm: mean brightness 100.8, spread (sd) 30.4
+hillside-levels.ppm: mean brightness 105.9, spread (sd) 46.1
